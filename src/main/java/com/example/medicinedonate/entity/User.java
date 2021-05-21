@@ -1,60 +1,97 @@
 package com.example.medicinedonate.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
-    public User(Integer id) {
-        this.id = id;
-    }
 
-    public User(Integer id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 
-    @Id
-    private Integer id;
+	private String userName;
 
-    public Integer getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    private String email;
+	public int getAge() {
+		return age;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+	public void setAge(int age) {
+		this.age = age;
+	}
 
-    private String password;
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public User(String userName, String password, int age, String gender, String address) {
+		this.userName = userName;
+		this.password = password;
+		this.age = age;
+		this.gender = gender;
+		this.address = address;
+	}
+	//for login purpose
+	public User(String userName, String password){
+		this.userName = userName;
+		this.password = password;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public User() {
+	}
+
+	private String password;
+	private int age;
+
+	@Override
+	public String toString() {
+		return "User [address=" + address + ", age=" + age + ", gender=" + gender + ", id=" + id + ", password="
+				+ password + ", userName=" + userName + "]";
+	}
+
+	private String gender;
+	private String address;
 
 }
