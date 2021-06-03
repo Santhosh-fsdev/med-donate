@@ -82,10 +82,9 @@ pageEncoding="ISO-8859-1"%>
                     <div class="form-group">
                       <label for="age">Choose your age:</label>
                       <select name="cars" id="age">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
+                        <% for(int i = 18; i <= 50; i++) { %>
+                        <option value="<%=i %>"><%=i %></option>
+                        <% } %>
                       </select>
                     </div>
                     <div class="form-group">
@@ -245,7 +244,14 @@ pageEncoding="ISO-8859-1"%>
         };
 
         $.ajax(settings).done(function (response) {
-          console.log(response);
+          if(response === "success"){
+            window.alert("Signup Success!!. Login to continue");
+              window.location.href = "/";
+          }
+          else{
+            window.alert("Signup Failed");
+            window.location.reload();
+          }
         });
       }
     </script>

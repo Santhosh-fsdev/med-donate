@@ -71,13 +71,6 @@ pageEncoding="ISO-8859-1" %>
                         class="input-material"
                       />
                       <label for="userName" class="label-material">User Name</label>
-                      <span
-                        ><label
-                          id="email-error"
-                          class="error"
-                          for="email"
-                        ></label
-                      ></span>
                     </div>
                     <div class="form-group">
                       <input
@@ -133,7 +126,6 @@ pageEncoding="ISO-8859-1" %>
           rules: {
             email: {
               required: true,
-              email: true,
             },
             password: {
               required: true,
@@ -145,7 +137,6 @@ pageEncoding="ISO-8859-1" %>
           messages: {
             email: {
               required: "Please enter your email",
-              email: "Please enter vaild email",
             },
             password: {
               required: "please enter your password",
@@ -173,7 +164,14 @@ pageEncoding="ISO-8859-1" %>
         };
 
         $.ajax(settings).done(function (response) {
-          console.log(response);
+          if(response === "success"){
+            window.alert("Login Success");
+              window.location.href = "/admin";
+          }
+          else{
+            window.alert("Login Failed");
+            window.location.reload();
+          }
         });
       }
     </script>
