@@ -7,6 +7,7 @@ import com.example.medicinedonate.repository.UserRepository;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,17 +33,19 @@ public class AuthController {
     @Autowired
     HttpSession session;
 
-    @GetMapping("/")
+    
+
+    @GetMapping("${server.contextroot}/")
     public String showLogin(Map<String, Object> model) {
         return "login";
     }
 
-    @GetMapping(value = "/signup")
+    @GetMapping(value = "${server.contextroot}/signup")
     public String showSignup(Map<String, Object> model) {
         return ("signup");
     }
 
-    @PostMapping("/login")
+    @PostMapping("${server.contextroot}/login")
     @ResponseBody
     public String login(@RequestBody User user) {
         User loginUser = userRepository.findByUserName(user.getUserName());
@@ -71,7 +74,7 @@ public class AuthController {
 
     }
 
-    @PostMapping("/signup")
+    @PostMapping("${server.contextroot}/signup")
     @ResponseBody
     public String postLogin(@RequestBody User user) {
         System.out.println("inside signup serv;et");
@@ -80,17 +83,17 @@ public class AuthController {
         return "success";
     }
 
-    @GetMapping("/findAllUsers")
+    @GetMapping("${server.contextroot}/findAllUsers")
     public void getUsers() {
         List<User> list = userRepository.findAll();
         System.out.println(list);
     }
 
-    @GetMapping("/logout")
+    @GetMapping("${server.contextroot}/logout")
     public String logout(){
         session.removeAttribute("userobj");
 		session.invalidate();
-		return "redirect: ";
+		return "redirect: ${server.contextroot}/";
     }
 
 }

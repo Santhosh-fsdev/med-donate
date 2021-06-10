@@ -11,31 +11,31 @@ pageEncoding="ISO-8859-1" %>
     <meta name="robots" content="all,follow" />
 
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${server.contextroot}/vendor/bootstrap/css/bootstrap.min.css" />
 
     <!-- Font Awesome CSS-->
     <link
       rel="stylesheet"
-      href="vendor/font-awesome/css/font-awesome.min.css"
+      href="${server.contextroot}/vendor/font-awesome/css/font-awesome.min.css"
     />
 
     <!-- Custom Font Icons CSS-->
-    <link rel="stylesheet" href="vendor/css/font.css" />
+    <link rel="stylesheet" href="${server.contextroot}/vendor/css/font.css" />
 
     <!-- theme stylesheet-->
     "
     <link
       rel="stylesheet"
       rel="stylesheet"
-      href="vendor/css/style.blue.css"
+      href="${server.contextroot}/vendor/css/style.blue.css"
       id="theme-stylesheet"
     />
 
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="vendor/css/custom.css" />
+    <link rel="stylesheet" href="${server.contextroot}/vendor/css/custom.css" />
 
     <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" href="${server.contextroot}/img/favicon.ico" />
   </head>
   <body>
     <div class="login-page">
@@ -100,7 +100,7 @@ pageEncoding="ISO-8859-1" %>
                   </form>
                   <small>Do not have an account? </small
                   ><a
-                    href="${pageContext.request.contextPath}/signup"
+                    href="signup"
                     class="signup"
                     >Signup</a
                   >
@@ -113,13 +113,13 @@ pageEncoding="ISO-8859-1" %>
     </div>
 
     <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper.js/umd/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"></script>
-    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="js/front.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="${server.contextroot}/vendor/jquery/jquery.min.js"></script>
+    <script src="${server.contextroot}/vendor/popper.js/umd/popper.min.js"></script>
+    <script src="${server.contextroot}/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${server.contextroot}/vendor/jquery.cookie/jquery.cookie.js"></script>
+    <script src="${server.contextroot}/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="${server.contextroot}/js/front.js"></script>
+    <script src="${server.contextroot}/js/custom.js"></script>
     <script>
       $(function () {
         $("form[name='loginform']").validate({
@@ -152,10 +152,11 @@ pageEncoding="ISO-8859-1" %>
         btn.addEventListener("click", submitLogin);
       });
       function submitLogin() {
+        window.alert("${server.contextroot}");
         let userName = document.getElementById("userName").value;
         let password = document.getElementById("password").value;
         var settings = {
-          url: "/login",
+          url: "login",
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -166,7 +167,7 @@ pageEncoding="ISO-8859-1" %>
         $.ajax(settings).done(function (response) {
           if(response === "success"){
             window.alert("Login Success");
-              window.location.href = "/admin";
+              window.location.href = "${server.contextroot}/admin";
           }
           else{
             window.alert("Login Failed");

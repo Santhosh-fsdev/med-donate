@@ -12,26 +12,26 @@
     <meta charset="utf-8">
 
     <title>Med Donate</title>
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="${server.contextroot}/img/favicon.ico">
 
     <meta name="description" content="notifier app is used to add notes">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
     <link type="text/css" rel="stylesheet"
-          href="vendor/bootstrap/css/bootstrap.min.css">
+          href="${server.contextroot}/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
     <link type="text/css" rel="stylesheet"
-          href="vendor/font-awesome/css/font-awesome.min.css">
+          href="${server.contextroot}/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Custom Font Icons CSS-->
-    <link type="text/css" rel="stylesheet" href="vendor/css/font.css">
+    <link type="text/css" rel="stylesheet" href="${server.contextroot}/vendor/css/font.css">
     <!-- Google fonts - Muli-->
-    <link type="text/css" rel="stylesheet" href="vendor/css/style.blue.css"
+    <link type="text/css" rel="stylesheet" href="${server.contextroot}/vendor/css/style.blue.css"
           id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link type="text/css" rel="stylesheet" href="vendor/css/custom.css">
+    <link type="text/css" rel="stylesheet" href="${server.contextroot}/vendor/css/custom.css">
     <!-- Favicon-->
-    <link type="image/icon" rel="shortcut icon" href="img/favicon.ico">
+    <link type="image/icon" rel="shortcut icon" href="${server.contextroot}/img/favicon.ico">
 
 </head>
 
@@ -98,7 +98,7 @@
                     <div class="list-inline-item" >
                         <button type="button" style="margin-right:1rem;background-color: #ffffff" data-toggle="modal" data-target="#addNotebook" class="btn button-add"> Add Medicines
                         </button>
-                        <a href="/donate" style="margin-right:1rem;background-color: #ffffff"  class="btn button-add">View All User Donate Data
+                        <a href="donate" style="margin-right:1rem;background-color: #ffffff"  class="btn button-add">View All User Donate Data
                         </a>
                         <a href="#" style="background-color: #ffffff" class="btn button-add">View All User Request Data
                         </a>
@@ -188,7 +188,7 @@
                             <td>${item.getName()}</td>
                             <td>${item.getCategory()}</td>
                             <td>${item.getQuantity()}</td>
-                            <td><a style="color: red; text-decoration: underline;" href="/deleteMedicine?Id=${item.getId()}"> Delete</a></td>
+                            <td><a style="color: red; text-decoration: underline;" href="deleteMedicine?Id=${item.getId()}"> Delete</a></td>
                         </tr>
                         </c:forEach>
                     </c:when>
@@ -272,13 +272,13 @@
 
 
 <!-- JavaScript files-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper.js/umd/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
-<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-<script src="js/front.js"></script>
-<script src="js/custom.js"></script>
+<script src="${server.contextroot}/vendor/jquery/jquery.min.js"></script>
+<script src="${server.contextroot}/vendor/popper.js/umd/popper.min.js"></script>
+<script src="${server.contextroot}/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="${server.contextroot}/vendor/jquery.cookie/jquery.cookie.js"></script>
+<script src="${server.contextroot}/vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="${server.contextroot}/js/front.js"></script>
+<script src="${server.contextroot}/js/custom.js"></script>
 
 <script>
 

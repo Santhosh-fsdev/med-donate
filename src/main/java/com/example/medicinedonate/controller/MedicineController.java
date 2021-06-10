@@ -29,7 +29,7 @@ public class MedicineController {
     HttpSession session;
     
     
-    @GetMapping("/donate")
+    @GetMapping("${server.contextroot}/donate")
     public String getAll(){
         List<Donate> list = donateRepository.findAll();
         System.out.println(list);
@@ -37,7 +37,7 @@ public class MedicineController {
         return "alldonate";
     }
 
-    @PostMapping("/addDonate")
+    @PostMapping("${server.contextroot}/addDonate")
     public String addMedicine(@RequestParam Map<String, String> body){
         // Donate medicine = new Donate( body.get("medicineCategory"), body.get("medicineName"),body.get("medicineQuantity"), body.get("donorname"), body.get("address"),body.get("date"));
         // medicineRepository.save(medicine);

@@ -11,6 +11,7 @@ import com.example.medicinedonate.entity.User;
 import com.example.medicinedonate.repository.MedicineRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,8 @@ public class AdminController {
     HttpSession session;
 
 
-    @GetMapping("/admin")
+
+    @GetMapping("${server.contextroot}/admin")
     public String admin(Model model){
         User user = (User) session.getAttribute("user");
         if(user.getUserName().equals("admin") && user.getPassword().equals("Admin@123")){
@@ -40,7 +42,7 @@ public class AdminController {
         
     }
     
-    @PostMapping("/addMedicine")
+    @PostMapping("${server.contextroot}/addMedicine")
     public String addMedicine(@RequestParam Map<String, String> body){
         Long Quantity = (long) 0;
         Quantity = Long.parseLong(body.get("medicineQuantity"));
@@ -49,9 +51,9 @@ public class AdminController {
         medicineRepository.save(medicine);
         List<Medicine> medicineList = medicineRepository.findAll();
         session.setAttribute("medicineList", medicineList);
-        return "redirect:admin";
+        return "redirect:${server.contextroot}/admin";
     }
-    @GetMapping("/deleteMedicine")
+    @GetMapping("${server.contextroot}/deleteMedicine")
     public String deleteMedicine(@RequestParam Long Id) {
     	System.out.println(Id);
     	medicineRepository.deleteById(Id);
@@ -59,6 +61,6 @@ public class AdminController {
         List<Medicine> medicineList = medicineRepository.findAll();
         session.setAttribute("medicineList", medicineList);
         
-    	return "redirect:admin";
+    	return "redirect:${server.contextroot}/admin";
     }
 }
