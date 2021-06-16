@@ -66,6 +66,7 @@ pageEncoding="ISO-8859-1" %>
                     <div class="form-group">
                       <input
                         id="userName"
+                        name="userName"
                         type="email"
                         name="email"
                         class="input-material"
@@ -92,7 +93,8 @@ pageEncoding="ISO-8859-1" %>
                     </div>
                     <button
                       type="submit"
-                      id="login-submit"
+                      id="login"
+                      name="login"
                       class="btn btn-primary"
                     >
                       Login
@@ -100,9 +102,9 @@ pageEncoding="ISO-8859-1" %>
                   </form>
                   <small>Do not have an account? </small
                   ><a
-                    href="signup"
+                    href="register"
                     class="signup"
-                    >Signup</a
+                    >Register</a
                   >
                 </div>
               </div>
@@ -135,9 +137,7 @@ pageEncoding="ISO-8859-1" %>
             },
           },
           messages: {
-            email: {
-              required: "Please enter your email",
-            },
+
             password: {
               required: "please enter your password",
               minlength: "minimum password lenght must be 8",
@@ -148,7 +148,7 @@ pageEncoding="ISO-8859-1" %>
           },
         });
 
-        let btn = document.getElementById("login-submit");
+        let btn = document.getElementById("login");
         btn.addEventListener("click", submitLogin);
       });
       function submitLogin() {
@@ -165,7 +165,7 @@ pageEncoding="ISO-8859-1" %>
 
         $.ajax(settings).done(function (response) {
           if(response === "success"){
-              window.location.href = "<%=request.getContextPath()%>/admin";
+              window.location.href = "<%=request.getContextPath()%>/adminhome";
           }
           else{
             window.location.reload();

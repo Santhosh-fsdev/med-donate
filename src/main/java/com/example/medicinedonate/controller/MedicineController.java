@@ -48,4 +48,10 @@ public class MedicineController {
         return "";
     }
 
+    @GetMapping("/addmedicine")
+    public String returnAdd(){
+
+        return "addmedicine";
+    }
+
 }

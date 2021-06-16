@@ -38,13 +38,13 @@ public class AuthController {
 
     
 
-    @GetMapping(value =  "/")
+    @GetMapping(value =  "/login")
     public String showLogin(Map<String, Object> model) {
         System.out.println(root);
         return "login";
     }
 
-    @GetMapping(value = "/signup")
+    @GetMapping(value = "/register")
     public String showSignup(Map<String, Object> model) {
         return ("signup");
     }
@@ -78,7 +78,7 @@ public class AuthController {
 
     }
 
-    @PostMapping(value =  "/signup")
+    @PostMapping(value =  "/register")
     @ResponseBody
     public String postLogin(@RequestBody User user) {
         System.out.println("inside signup serv;et");

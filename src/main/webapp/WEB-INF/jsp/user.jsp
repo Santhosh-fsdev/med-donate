@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
-<%@ page import="com.example.medicinedonate.entity.Medicine" %>
+<%@ page import="com.example.medicinedonate.entity.Request" %>
 <%@ page import="com.example.medicinedonate.entity.User" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -41,12 +41,12 @@
 <%
     response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
     User user = null;
-    ArrayList<Medicine> medicineList;
+    ArrayList<Request> medicineList;
     if (session.getAttribute("user") == null) {
         response.sendRedirect("/");
     } else {
         user = (User) session.getAttribute("user");
-        medicineList = (ArrayList<Medicine>) session.getAttribute("medicineList");
+        medicineList = (ArrayList<Request>) session.getAttribute("medicineList");
     }
 %>
 
@@ -70,7 +70,7 @@
             <!--Right menu list-->
             <div class="right-menu list-inline no-margin-bottom" style="width: 10%">
                 <!--End Message-->
-                    <p style="display: inline; font-size:1.5rem"> ${user.userName}</p>
+                    <p style="display: inline; font-size:1.5rem" id="welcomeUserName"> ${user.userName}</p>
                     <a style="color: red; text-decoration: underline;" href="<%=request.getContextPath()%>/logout">Logout</a>
 
             </div>
@@ -90,9 +90,9 @@
                 </div>
                 <div class="right-menu list-inline no-margin-bottom">
                     <div class="list-inline-item" >
-                        <a href="<%=request.getContextPath()%>/donate" style="margin-right:1rem;background-color: #ffffff"  class="btn button-add">View Donated Data
+                        <a href="<%=request.getContextPath()%>/userViewDonateMedicine" style="margin-right:1rem;background-color: #ffffff"  class="btn button-add" id="viewDonateMedicine">View Donated Data
                         </a>
-                        <a href="#" style="background-color: #ffffff" class="btn button-add">View Requested Data
+                        <a href="#" style="background-color: #ffffff" class="btn button-add" id="viewDonateMedicine">View Requested Data
                         </a>
                     </div>
                 </div>
@@ -144,9 +144,50 @@
         </div>
              <div style="text-align: center;color: #000;">
                         <h2>Welcome ${user.userName}!</h2>
-        <button style="background-color: #000;color: #fff;" class="btn button-add"  data-toggle="modal" data-target="#addNotebook" >Donate Medicine</button>
-        <button style="background-color: #000;color: #fff;" class="btn button-add">Request Medicine</button>
+        <button style="background-color: #000;color: #fff;" class="btn button-add"  data-toggle="modal" data-target="#addNotebook" id="donateMedicine">Donate Medicine</button>
+        <a href="userRequestMedicine" style="background-color: #000;color: #fff;" class="btn button-add" id="requestMedicine">Request Medicine</a>
              </div>
+
+             <br />
+             <br />
+             <table class="table table-hover table-bordered" style="width: 80%;margin: auto;">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Id</th>
+                    <th>Medicine Name</th>
+                    <th>Medicine Category</th>
+                    <th>Medicine Quantity</th>
+                    <th>Requested Name</th>
+                    <th>Delivery Address</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <c:choose>
+                        <c:when test="${medicineList.size() == 0}">
+                            <tr>
+                                <td colspan="5" name="noData" style="text-align: center; color: #000;" id="noData" name="noData">No data found</td>
+                            </tr>
+    
+                        </c:when>
+                        <c:when test="${medicineList.size() > 0}">
+                            <c:forEach items="${medicineList}" var="item">
+                                <tr>
+                                <td id="medId${item.getId()}" name="medId${item.getId()}">${item.getId()}</td>
+                                <td id="medName${item.getId()}" name="medName${item.getId()}" >${item.getName()}</td>
+                                <td id="medCategory${item.getId()}" name="medCategory${item.getId()}" >${item.getCategory()}</td>
+                                <td id="medQty${item.getId()}" name="medQty${item.getId()}" >${item.getQuantity()}</td>
+                                <td id="reqName${item.getId()}" name="reqName${item.getId()}" >${item.getReqname()}</td>
+                                <td id="delAddress${item.getId()}" name="delAddress${item.getId()}" >${item.getAddress()}</td>
+                                <td><a style="color: red; text-decoration: underline;" href="<%=request.getContextPath()%>/deleteMedicine?Id=${item.getId()}"> Delete</a></td>
+                            </tr>
+                            </c:forEach>
+                        </c:when>
+                    </c:choose>
+     
+    
+                </tbody>
+              </table>
 
            <div class="col-lg-12 " id="notebook" style="margin: auto; width: 80%">
                 <div id="editNotebook${item.getId()}" tabindex="-1" role="dialog"

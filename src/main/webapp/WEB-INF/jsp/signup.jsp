@@ -65,7 +65,7 @@ pageEncoding="ISO-8859-1"%>
                       <input
                         id="userName"
                         type="text"
-                        name="username"
+                        name="userName"
                         class="input-material"
                       />
                       <label for="userName" class="label-material"
@@ -81,7 +81,7 @@ pageEncoding="ISO-8859-1"%>
                     </div>
                     <div class="form-group">
                       <label for="age">Choose your age:</label>
-                      <select name="cars" id="age">
+                      <select name="cars" id="age" name="age">
                         <% for(int i = 18; i <= 50; i++) { %>
                         <option value="<%=i %>"><%=i %></option>
                         <% } %>
@@ -89,7 +89,7 @@ pageEncoding="ISO-8859-1"%>
                     </div>
                     <div class="form-group">
                       <label for="gender">Choose your gender:</label>
-                      <select name="cars" id="gender">
+                      <select name="cars" id="gender" name="gender">
                         <option value="male">male</option>
                         <option value="female">female</option>
                         <option value="others">others</option>
@@ -132,35 +132,18 @@ pageEncoding="ISO-8859-1"%>
                         ></label
                       ></span>
                     </div>
-                    <div class="form-group">
-                      <input
-                        id="confirmPassword"
-                        type="text"
-                        name="confirmPassword"
-                        class="input-material"
-                      />
-                      <label for="confirmPassword" class="label-material"
-                        >Confirm Password</label
-                      >
-                      <span
-                        ><label
-                          id="confirmPassword-error"
-                          class="error"
-                          for="confirmPassword"
-                        ></label
-                      ></span>
-                    </div>
-
                     <div class="form-group text-center">
                       <input
                         id="register"
+                        name="register"
                         type="submit"
                         class="btn btn-primary"
+                        value="REGISTER NOW"
                       />
                     </div>
                   </form>
                   <small>Already have an account? </small
-                  ><a href="<%=request.getContextPath()%>/" class="signup">Login</a>
+                  ><a href="<%=request.getContextPath()%>/login" class="signup">Log In</a>
                 </div>
               </div>
             </div>
@@ -229,7 +212,7 @@ pageEncoding="ISO-8859-1"%>
         let address = document.getElementById("address").value;
         let password = document.getElementById("password").value;
         var settings = {
-          url: "signup",
+          url: "register",
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -245,10 +228,9 @@ pageEncoding="ISO-8859-1"%>
 
         $.ajax(settings).done(function (response) {
           if(response === "success"){
-              window.location.href = "<%=request.getContextPath()%>/";
+              window.location.href = "<%=request.getContextPath()%>/login";
           }
           else{
-            window.alert("Signup Failed");
             window.location.reload();
           }
         });
