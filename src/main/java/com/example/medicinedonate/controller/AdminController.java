@@ -30,7 +30,7 @@ public class AdminController {
 
 
 
-    @GetMapping("${server.contextroot}/admin")
+    @GetMapping( value = "/admin")
     public String admin(Model model){
         User user = (User) session.getAttribute("user");
         if(user.getUserName().equals("admin") && user.getPassword().equals("Admin@123")){
@@ -42,7 +42,7 @@ public class AdminController {
         
     }
     
-    @PostMapping("${server.contextroot}/addMedicine")
+    @PostMapping(value = "/addMedicine")
     public String addMedicine(@RequestParam Map<String, String> body){
         Long Quantity = (long) 0;
         Quantity = Long.parseLong(body.get("medicineQuantity"));
@@ -51,9 +51,9 @@ public class AdminController {
         medicineRepository.save(medicine);
         List<Medicine> medicineList = medicineRepository.findAll();
         session.setAttribute("medicineList", medicineList);
-        return "redirect:${server.contextroot}/admin";
+        return "redirect:/admin";
     }
-    @GetMapping("${server.contextroot}/deleteMedicine")
+    @GetMapping(value =  "/deleteMedicine")
     public String deleteMedicine(@RequestParam Long Id) {
     	System.out.println(Id);
     	medicineRepository.deleteById(Id);
@@ -61,6 +61,6 @@ public class AdminController {
         List<Medicine> medicineList = medicineRepository.findAll();
         session.setAttribute("medicineList", medicineList);
         
-    	return "redirect:${server.contextroot}/admin";
+    	return "redirect:/admin";
     }
 }

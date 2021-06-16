@@ -11,31 +11,31 @@ pageEncoding="ISO-8859-1" %>
     <meta name="robots" content="all,follow" />
 
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="${server.contextroot}/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" />
 
     <!-- Font Awesome CSS-->
     <link
       rel="stylesheet"
-      href="${server.contextroot}/vendor/font-awesome/css/font-awesome.min.css"
+      href="<%=request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css"
     />
 
     <!-- Custom Font Icons CSS-->
-    <link rel="stylesheet" href="${server.contextroot}/vendor/css/font.css" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/vendor/css/font.css" />
 
     <!-- theme stylesheet-->
     "
     <link
       rel="stylesheet"
       rel="stylesheet"
-      href="${server.contextroot}/vendor/css/style.blue.css"
+      href="<%=request.getContextPath()%>/vendor/css/style.blue.css"
       id="theme-stylesheet"
     />
 
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="${server.contextroot}/vendor/css/custom.css" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/vendor/css/custom.css" />
 
     <!-- Favicon-->
-    <link rel="shortcut icon" href="${server.contextroot}/img/favicon.ico" />
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico" />
   </head>
   <body>
     <div class="login-page">
@@ -113,13 +113,13 @@ pageEncoding="ISO-8859-1" %>
     </div>
 
     <!-- JavaScript files-->
-    <script src="${server.contextroot}/vendor/jquery/jquery.min.js"></script>
-    <script src="${server.contextroot}/vendor/popper.js/umd/popper.min.js"></script>
-    <script src="${server.contextroot}/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${server.contextroot}/vendor/jquery.cookie/jquery.cookie.js"></script>
-    <script src="${server.contextroot}/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="${server.contextroot}/js/front.js"></script>
-    <script src="${server.contextroot}/js/custom.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/popper.js/umd/popper.min.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/jquery.cookie/jquery.cookie.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/front.js"></script>
+    <script src="<%=request.getContextPath()%>/js/custom.js"></script>
     <script>
       $(function () {
         $("form[name='loginform']").validate({
@@ -152,7 +152,6 @@ pageEncoding="ISO-8859-1" %>
         btn.addEventListener("click", submitLogin);
       });
       function submitLogin() {
-        window.alert("${server.contextroot}");
         let userName = document.getElementById("userName").value;
         let password = document.getElementById("password").value;
         var settings = {
@@ -166,11 +165,9 @@ pageEncoding="ISO-8859-1" %>
 
         $.ajax(settings).done(function (response) {
           if(response === "success"){
-            window.alert("Login Success");
-              window.location.href = "${server.contextroot}/admin";
+              window.location.href = "<%=request.getContextPath()%>/admin";
           }
           else{
-            window.alert("Login Failed");
             window.location.reload();
           }
         });

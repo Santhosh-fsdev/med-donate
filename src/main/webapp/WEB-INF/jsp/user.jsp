@@ -19,17 +19,17 @@
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
     <link type="text/css" rel="stylesheet"
-          href="vendor/bootstrap/css/bootstrap.min.css">
+          href="<%=request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
     <link type="text/css" rel="stylesheet"
-          href="vendor/font-awesome/css/font-awesome.min.css">
+          href="<%=request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Custom Font Icons CSS-->
-    <link type="text/css" rel="stylesheet" href="vendor/css/font.css">
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/vendor/css/font.css">
     <!-- Google fonts - Muli-->
-    <link type="text/css" rel="stylesheet" href="vendor/css/style.blue.css"
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/vendor/css/style.blue.css"
           id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link type="text/css" rel="stylesheet" href="vendor/css/custom.css">
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/vendor/css/custom.css">
     <!-- Favicon-->
     <link type="image/icon" rel="shortcut icon" href="img/favicon.ico">
 
@@ -71,7 +71,7 @@
             <div class="right-menu list-inline no-margin-bottom" style="width: 10%">
                 <!--End Message-->
                     <p style="display: inline; font-size:1.5rem"> ${user.userName}</p>
-                    <a style="color: red; text-decoration: underline;" href="logout">Logout</a>
+                    <a style="color: red; text-decoration: underline;" href="<%=request.getContextPath()%>/logout">Logout</a>
 
             </div>
         </div>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="right-menu list-inline no-margin-bottom">
                     <div class="list-inline-item" >
-                        <a href="/donate" style="margin-right:1rem;background-color: #ffffff"  class="btn button-add">View Donated Data
+                        <a href="<%=request.getContextPath()%>/donate" style="margin-right:1rem;background-color: #ffffff"  class="btn button-add">View Donated Data
                         </a>
                         <a href="#" style="background-color: #ffffff" class="btn button-add">View Requested Data
                         </a>
@@ -205,13 +205,13 @@
 
 
 <!-- JavaScript files-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper.js/umd/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
-<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-<script src="js/front.js"></script>
-<script src="js/custom.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/popper.js/umd/popper.min.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/jquery.cookie/jquery.cookie.js"></script>
+<script src="<%=request.getContextPath()%>/vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/front.js"></script>
+<script src="<%=request.getContextPath()%>/js/custom.js"></script>
 
 <script>
 

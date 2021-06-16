@@ -33,19 +33,23 @@ public class AuthController {
     @Autowired
     HttpSession session;
 
+    @Value("")
+    private String root;
+
     
 
-    @GetMapping("${server.contextroot}/")
+    @GetMapping(value =  "/")
     public String showLogin(Map<String, Object> model) {
+        System.out.println(root);
         return "login";
     }
 
-    @GetMapping(value = "${server.contextroot}/signup")
+    @GetMapping(value = "/signup")
     public String showSignup(Map<String, Object> model) {
         return ("signup");
     }
 
-    @PostMapping("${server.contextroot}/login")
+    @PostMapping(value =  "/login")
     @ResponseBody
     public String login(@RequestBody User user) {
         User loginUser = userRepository.findByUserName(user.getUserName());
@@ -74,7 +78,7 @@ public class AuthController {
 
     }
 
-    @PostMapping("${server.contextroot}/signup")
+    @PostMapping(value =  "/signup")
     @ResponseBody
     public String postLogin(@RequestBody User user) {
         System.out.println("inside signup serv;et");
@@ -83,17 +87,17 @@ public class AuthController {
         return "success";
     }
 
-    @GetMapping("${server.contextroot}/findAllUsers")
+    @GetMapping(value =  "/findAllUsers")
     public void getUsers() {
         List<User> list = userRepository.findAll();
         System.out.println(list);
     }
 
-    @GetMapping("${server.contextroot}/logout")
+    @GetMapping(value =  "/logout")
     public String logout(){
         session.removeAttribute("userobj");
 		session.invalidate();
-		return "redirect: ${server.contextroot}/";
+		return "redirect: ";
     }
 
 }
