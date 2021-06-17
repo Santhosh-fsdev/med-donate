@@ -97,7 +97,7 @@ public class AuthController {
     public String logout(){
         session.removeAttribute("userobj");
 		session.invalidate();
-		return "redirect: ";
+		return "redirect:login ";
     }
 
 }

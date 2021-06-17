@@ -56,7 +56,7 @@ pageEncoding="ISO-8859-1" %>
             <div class="col-lg-6">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                  <form id="loginform" name="loginform" class="mb-4">
+                  <div>
                     <span
                       ><label id="login-error" class="error" for="loginform">
                         <%=(request.getAttribute("errMessage") == null) ? "" :
@@ -67,8 +67,7 @@ pageEncoding="ISO-8859-1" %>
                       <input
                         id="userName"
                         name="userName"
-                        type="email"
-                        name="email"
+                        type="text"
                         class="input-material"
                       />
                       <label for="userName" class="label-material">User Name</label>
@@ -99,7 +98,7 @@ pageEncoding="ISO-8859-1" %>
                     >
                       Login
                     </button>
-                  </form>
+                  </div>
                   <small>Do not have an account? </small
                   ><a
                     href="register"
@@ -123,34 +122,9 @@ pageEncoding="ISO-8859-1" %>
     <script src="<%=request.getContextPath()%>/js/front.js"></script>
     <script src="<%=request.getContextPath()%>/js/custom.js"></script>
     <script>
-      $(function () {
-        $("form[name='loginform']").validate({
-          rules: {
-            email: {
-              required: true,
-            },
-            password: {
-              required: true,
-              minlength: 8,
-              maxlength: 15,
-              pswcheck: true,
-            },
-          },
-          messages: {
-
-            password: {
-              required: "please enter your password",
-              minlength: "minimum password lenght must be 8",
-              maxlenght: "maximum password length must be 15",
-              pswcheck:
-                "minmum 1 lowercase,1 uppercase,1 special character,1 digit",
-            },
-          },
-        });
-
-        let btn = document.getElementById("login");
+    let btn = document.getElementById("login");
         btn.addEventListener("click", submitLogin);
-      });
+
       function submitLogin() {
         let userName = document.getElementById("userName").value;
         let password = document.getElementById("password").value;
@@ -166,9 +140,6 @@ pageEncoding="ISO-8859-1" %>
         $.ajax(settings).done(function (response) {
           if(response === "success"){
               window.location.href = "<%=request.getContextPath()%>/adminhome";
-          }
-          else{
-            window.location.reload();
           }
         });
       }

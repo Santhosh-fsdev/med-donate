@@ -162,48 +162,9 @@ pageEncoding="ISO-8859-1"%>
     <script src="<%=request.getContextPath()%>/js/custom.js"></script>
 
     <script>
-      $(function () {
-        $("form[name='signupform']").validate({
-          rules: {
-            email: { required: true, email: true },
-            username: { required: true, minlength: 2, maxlength: 15 },
-            password: {
-              required: true,
-              minlength: 8,
-              maxlength: 15,
-              pswcheck: true,
-            },
-            address: { required: true },
-            confirmPassword: { required: true, equalTo: "#password" },
-          },
-          messages: {
-            email: {
-              required: "Please enter your email",
-              email: "Please enter vaild email",
-            },
-            password: {
-              required: "please enter your password",
-              pswcheck:
-                "minmum 1 lowercase,1 uppercase,1 special character,1 digit",
-              minlength: "minimum password lenght must be 8",
-              maxlength: "maximum password length must be 15",
-            },
-            username: {
-              minlength: "username must be greater than two digit",
-              required: "Please enter your username",
-            },
-            confirmPassword: {
-              required: "Please enter confirm password",
-              equalTo: "Password did'nt match",
-            },
-            phone: {
-              required: "please enter phone number",
-            },
-          },
-        });
+      
         let form = document.getElementById("signupform");
         form.addEventListener("submit", submitForm);
-      });
       function submitForm(e) {
         e.preventDefault();
         let userName = document.getElementById("userName").value;
